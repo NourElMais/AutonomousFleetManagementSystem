@@ -1,6 +1,9 @@
+using FluentValidation;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
+using Order.API.Application.DTOs;
 using Order.API.Application.Orders.Commands.CreateOrder;
+using Order.API.Application.Validation;
 using Order.API.Domain.Repositories;
 using Order.API.Infrastructure.Data;
 using Order.API.Infrastructure.Repositories;
@@ -21,6 +24,7 @@ builder.Services.AddDbContext<OrderDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 builder.Services.AddMediatR(typeof(CreateOrderCommandHandler).Assembly);
 builder.Services.AddScoped<IOrderRepository, OrderRepository>();
+builder.Services.AddScoped<IValidator<CreateOrderDTO>, CreateOrderValidator>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

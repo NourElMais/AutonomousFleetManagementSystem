@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using FluentValidation;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Order.API.Application.DTOs;
 using Order.API.Application.Orders.Commands.CreateOrder;
@@ -12,10 +13,11 @@ namespace Order.API.Presentation.Controllers;
 public class OrdersController : ControllerBase
 {
     private readonly IMediator _mediator;
-
-    public OrdersController(IMediator mediator)
+    private readonly IValidator<CreateOrderDTO> _validator;
+    public OrdersController(IMediator mediator, IValidator<CreateOrderDTO> validator)
     {
         _mediator = mediator;
+        _validator = validator;
     }
     
     [HttpPost]
