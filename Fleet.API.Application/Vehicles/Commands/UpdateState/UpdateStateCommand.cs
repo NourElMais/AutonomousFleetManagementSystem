@@ -1,4 +1,5 @@
-﻿using Fleet.API.Domain.Entities;
+﻿using Fleet.API.Application.Interfaces;
+using Fleet.API.Domain.Entities;
 using MediatR;
 
 namespace Fleet.API.Application.Vehicles.Commands.UpdateState;
