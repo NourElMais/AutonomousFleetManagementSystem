@@ -5,7 +5,7 @@ services:
     environment:
       POSTGRES_USER: nour
       POSTGRES_PASSWORD: nour123
-      POSTGRES_DB: FleetDB
+      POSTGRES_DB: postgres
     ports:
       - 5432:5432
     volumes:

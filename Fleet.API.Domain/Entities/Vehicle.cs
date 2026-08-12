@@ -7,5 +7,5 @@ public class Vehicle
     public decimal Price { get; private set; }
     public string VehicleStatus { get; private set; }
     public decimal BatteryLevel { get; private set; }
-    public CoordinateTelemetry coordinates { get; private set; }
+    public string coordinates { get; private set; }
 }
