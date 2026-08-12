@@ -1,15 +1,17 @@
 ﻿using Fleet.API.Application.DTOs;
 using Fleet.API.Application.Vehicles.Commands.CreateVehicle;
+using Fleet.API.Application.Vehicles.Commands.UpdateState;
+using Fleet.API.Application.Vehicles.Queries.GetVehicleById;
+using Fleet.API.Application.Vehicles.Queries.GetVehicles;
+using Fleet.API.Domain.Entities;
 using MediatR;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Fleet.API.Presentation.Controllers;
 
-// Fleet.API: POST /vehicles (Register Vehicle), GET /vehicles (List Tenant Vehicles), 
-// PATCH /vehicles/{id}/state (Modify Vehicle State).  
 [ApiController]
-[Route("api/[controller]")]
+[Route("[controller]")]
 public class VehiclesController: ControllerBase
 {
     private readonly IMediator _mediator;
@@ -30,5 +32,23 @@ public class VehiclesController: ControllerBase
         
         var vehicle = await _mediator.Send(command, cancellationToken);
         return Ok(vehicle);
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> GetVehicles(CancellationToken cancellationToken)
+    {
+        return Ok(await _mediator.Send(new GetVehiclesQuery(), cancellationToken));
+    }
+
+    [HttpGet("{id}")]
+    public async Task<IActionResult> GetVehicleById(string id, CancellationToken cancellationToken)
+    {
+        return Ok(await _mediator.Send(new GetVehicleByIdQuery(id), cancellationToken));
+    }
+
+    [HttpPatch("state/{id}")]
+    public async Task<IActionResult> AlterState(string id, [FromBody] VehicleStatus UpdatedStatus, CancellationToken cancellationToken)
+    {
+        return Ok(await _mediator.Send(new UpdateStateCommand(id, UpdatedStatus), cancellationToken));
     }
 }

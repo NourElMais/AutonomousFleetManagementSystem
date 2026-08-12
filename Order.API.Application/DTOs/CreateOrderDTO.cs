@@ -2,5 +2,5 @@
 
 public class CreateOrderDTO
 {
-    
+    public decimal TotalPrice { get;  set; }
 }

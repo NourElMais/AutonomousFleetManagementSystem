@@ -25,4 +25,21 @@ public class VehicleRepository : IVehicleRepository
         await _db.SaveChangesAsync(cancellationToken);
         return vehicle;
     }
+
+    public async Task<Vehicle?> GetByIdAsync(string vehicleId, CancellationToken cancellationToken)
+    {
+        Vehicle? v = await _db.Vehicles.FirstOrDefaultAsync(v => v.Id == vehicleId, cancellationToken);
+
+        if (v is null)
+        {
+            return null;
+        }
+        return v;
+    }
+
+    public async Task UpdateAsync(Vehicle vehicle, CancellationToken cancellationToken)
+    {
+        _db.Vehicles.Update(vehicle);
+        await _db.SaveChangesAsync(cancellationToken);
+    }
 }

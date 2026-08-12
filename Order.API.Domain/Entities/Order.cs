@@ -3,20 +3,20 @@
 public class Order
 {
 
-    public string Id { get; private set; }
-    public string Name { get; private set; }
-    public decimal TotalPrice { get; private set; }
+    public string Id { get;  set; }
+    public string Number { get;  set; }
+    public decimal TotalPrice { get;  set; }
 
-    public OrderState State { get; private set; }
-    public DateTime CreatedAt { get; private set; }
-    public DateTime LastUpdatedAt { get; private set; }
+    public OrderState State { get;  set; }
+    public DateTime CreatedAt { get;  set; }
+    public DateTime LastUpdatedAt { get;  set; }
 
 
-    public Order(string Id, string Name, decimal TotalPrice, OrderState State, DateTime CreatedAt,
+    public Order(string Id, string Number, decimal TotalPrice, OrderState State, DateTime CreatedAt,
         DateTime LastUpdatedAt)
     {
         this.Id = Id;
-        this.Name = Name;
+        this.Number = Number;
         this.TotalPrice = TotalPrice;
         this.State = State;
         this.CreatedAt = CreatedAt;
