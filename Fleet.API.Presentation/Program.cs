@@ -1,3 +1,5 @@
+using Fleet.API.Application.DTOs;
+using Fleet.API.Application.Validation;
 using Fleet.API.Application.Vehicles.Commands.CreateVehicle;
 using Fleet.API.Domain.Repositories;
 using Fleet.API.Infrastructure.Data;
@@ -27,7 +29,7 @@ builder.Services.AddDbContext<VehicleDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 builder.Services.AddScoped<IVehicleRepository, VehicleRepository>();
 builder.Services.AddMediatR(typeof(CreateVehicleCommandHandler).Assembly);
-
+builder.Services.AddScoped<IValidator<CreateVehicleDTO>, CreateVehicleValidator>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

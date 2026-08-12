@@ -4,6 +4,7 @@ using Fleet.API.Application.Vehicles.Commands.UpdateState;
 using Fleet.API.Application.Vehicles.Queries.GetVehicleById;
 using Fleet.API.Application.Vehicles.Queries.GetVehicles;
 using Fleet.API.Domain.Entities;
+using FluentValidation;
 using MediatR;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
@@ -15,9 +16,10 @@ namespace Fleet.API.Presentation.Controllers;
 public class VehiclesController: ControllerBase
 {
     private readonly IMediator _mediator;
-
-    public VehiclesController(IMediator mediator)
+    private readonly IValidator<CreateVehicleDTO> _validator;
+    public VehiclesController(IMediator mediator, IValidator<CreateVehicleDTO> validator)
     {
+        _validator = validator;
         _mediator = mediator;
     }
     [HttpPost]

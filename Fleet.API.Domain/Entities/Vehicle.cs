@@ -8,7 +8,7 @@ public class Vehicle
     public VehicleStatus Status { get;  set; }
     public decimal BatteryLevel { get;  set; }
     public string coordinates { get;  set; }
-    
+    public string TelemetryData { get;   set; }
     public void UpdateState(VehicleStatus updatedStatus)
     {
         Status = updatedStatus;

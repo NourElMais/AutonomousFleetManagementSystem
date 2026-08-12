@@ -6,7 +6,7 @@ public class Order
     public string Id { get;  set; }
     public string Number { get;  set; }
     public decimal TotalPrice { get;  set; }
-
+    public int PriorityScore { get; set; }
     public OrderState State { get;  set; }
     public DateTime CreatedAt { get;  set; }
     public DateTime LastUpdatedAt { get;  set; }
