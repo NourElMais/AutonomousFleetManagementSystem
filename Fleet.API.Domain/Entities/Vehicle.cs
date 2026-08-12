@@ -2,10 +2,10 @@
 
 public class Vehicle
 {
-    public string Id { get; private set; }
-    public string Model { get; private set; }
-    public decimal Price { get; private set; }
-    public string VehicleStatus { get; private set; }
-    public decimal BatteryLevel { get; private set; }
-    public string coordinates { get; private set; }
+    public string Id { get;  set; }
+    public string Model { get;  set; }
+    public decimal Price { get;  set; }
+    public VehicleStatus Status { get;  set; }
+    public decimal BatteryLevel { get;  set; }
+    public string coordinates { get;  set; }
 }

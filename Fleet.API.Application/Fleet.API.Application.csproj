@@ -10,4 +10,12 @@
       <ProjectReference Include="..\Fleet.API.Domain\Fleet.API.Domain.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Vehicles\Queries\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="MediatR" Version="8.0.0" />
+    </ItemGroup>
+
 </Project>
