@@ -1,8 +1,10 @@
 using Fleet.API.Application.DTOs;
+using Fleet.API.Application.Interfaces;
 using Fleet.API.Application.Validation;
 using Fleet.API.Application.Vehicles.Commands.CreateVehicle;
 using Fleet.API.Domain.Repositories;
 using Fleet.API.Infrastructure.Data;
+using Fleet.API.Infrastructure.Messaging;
 using Fleet.API.Infrastructure.Repositories;
 using Fleet.API.Presentation.Filters;
 using FluentValidation;
@@ -30,6 +32,7 @@ builder.Services.AddDbContext<VehicleDbContext>(options =>
 builder.Services.AddScoped<IVehicleRepository, VehicleRepository>();
 builder.Services.AddMediatR(typeof(CreateVehicleCommandHandler).Assembly);
 builder.Services.AddScoped<IValidator<CreateVehicleDTO>, CreateVehicleValidator>();
+builder.Services.AddScoped<IRabbitMqPublisher, RabbitMqPublisher>(); 
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
